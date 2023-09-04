@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello!</title>
+</head>
+<!-- <script src="../node_modules/socket.io/client-dist/socket.io.js"></script> -->
+<!-- Add this script tag to include Socket.io via CDN -->
+<script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+    integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+    crossorigin="anonymous"></script>
+
+<script>
+    const socket = io();
+</script>
+
+<body>
+    Integrating Socket.io with Node.js and Express
+    <pre>
+        Status: <span id="status"></span>
+        Message: <span id="message"></span>
+    </pre>
+    <script>
+        let statusEl = document.getElementById('status');
+        let messageEl = document.getElementById('message');
+        socket.on('connected', ({message}) => {
+            statusEl.textContent = message;
+        })
+        socket.on('message',({message})=>{
+            messageEl.textContent = message;
+        })
+    </script>
+</body>
+
+</html>
